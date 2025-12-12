@@ -1,8 +1,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "utility.cpp"
 
 bool buildMenu(char& userChar, std::vector<int>& userSortable){
+    userSortable.clear();
     while(userChar != 'x' && userSortable.empty()) {
         std::cout << "\n1. Enter a vector..." << std::endl;
         std::cout << "2. Randomly generate a vector..." << std::endl;
@@ -17,7 +19,9 @@ bool buildMenu(char& userChar, std::vector<int>& userSortable){
         switch(userChar) {
             case '1': {
                 std::cout << "\nYou selected option 1..." << std::endl;
-                //userSortable = {1,2,3,4,5};
+                if(utility::loadUnique(userSortable)){
+                    return true;
+                }
                 break;
             }
             case '2': {
