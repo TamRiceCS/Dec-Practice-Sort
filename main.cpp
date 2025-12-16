@@ -3,9 +3,11 @@
 #include <vector>
 #include "utility.cpp"
 
-bool buildMenu(char& userChar, std::vector<int>& userSortable){
+bool buildMenu(char &userChar, std::vector<int> &userSortable)
+{
     userSortable.clear();
-    while(userChar != 'x' && userSortable.empty()) {
+    while (userChar != 'x' && userSortable.empty())
+    {
         std::cout << "\n1. Enter a vector..." << std::endl;
         std::cout << "2. Randomly generate a vector..." << std::endl;
         std::cout << "3. Use a sample vector..." << std::endl;
@@ -15,35 +17,50 @@ bool buildMenu(char& userChar, std::vector<int>& userSortable){
         std::cin.clear();
         std::cin >> userChar;
 
-        // TODO: Saturday -> work on the vector generation c:
-        switch(userChar) {
-            case '1': {
-                std::cout << "\nYou selected option 1..." << std::endl;
-                if(utility::loadUnique(userSortable)){
-                    return true;
-                }
-                break;
+        switch (userChar)
+        {
+        case '1':
+        {
+            std::cout << "\nYou selected option 1..." << std::endl;
+            if (utility::loadUnique(userSortable))
+            {
+                return true;
             }
-            case '2': {
-                std::cout << "\nYou selected option 2..." << std::endl;
-                break;
+            break;
+        }
+        case '2':
+        {
+            std::cout << "\nYou selected option 2..." << std::endl;
+            if (utility::loadRandom(userSortable))
+            {
+                return true;
             }
-            case '3': {
-                std::cout << "\nYou selected option 3..." << std::endl;
-                break;
+            break;
+        }
+        case '3':
+        {
+            std::cout << "\nYou selected option 3..." << std::endl;
+            if (utility::loadGeneric(userSortable))
+            {
+                return true;
             }
-            case 'x': {
-                std::cout << "\nLooks like you chose to exit..." << std::endl;
-                return false;
-            }
+            break;
+        }
+        case 'x':
+        {
+            std::cout << "\nLooks like you chose to exit..." << std::endl;
+            return false;
+        }
         }
     }
     return true;
 }
 
-bool sortMenu(char& userChar, std::vector<int>& userSortable) {
+bool sortMenu(char &userChar, std::vector<int> &userSortable)
+{
 
-    while(userChar != 'x') {
+    while (userChar != 'x')
+    {
         std::cout << "\n1. Bubble Sort..." << std::endl;
         std::cout << "2. Insertion Sort..." << std::endl;
         std::cout << "3. Selection Sort..." << std::endl;
@@ -56,36 +73,44 @@ bool sortMenu(char& userChar, std::vector<int>& userSortable) {
         std::cin.clear();
         std::cin >> userChar;
 
-        switch(userChar) {
-            case '1': {
-                std::cout << "\nYou chose to run Bubble Sort..." << std::endl;
-                break;
-            }
-            case '2': {
-                std::cout << "\nYou chose to run Insertion Sort..." << std::endl;
-                break;
-            }
-            case '3': {
-                std::cout << "\nYou chose to run Selection Sort..." << std::endl;
-                break;
-            }
-            case '4': {
-                std::cout << "\nYou chose to run Merge Sort..." << std::endl;
-                break;
-            }
-            case '5': {
-                std::cout << "\nYou chose to run Quick Sort..." << std::endl;
-                break;
-            }
-            case 'b': {
-                std::cout << "\nLooks like you chose to enter another vector, heading back..." << std::endl;
-                userSortable.clear();
-                return true;
-            }
-            case 'x': {
-                std::cout << "\nLooks like you chose to exit..." << std::endl;
-                return false;
-            }
+        switch (userChar)
+        {
+        case '1':
+        {
+            std::cout << "\nYou chose to run Bubble Sort..." << std::endl;
+            break;
+        }
+        case '2':
+        {
+            std::cout << "\nYou chose to run Insertion Sort..." << std::endl;
+            break;
+        }
+        case '3':
+        {
+            std::cout << "\nYou chose to run Selection Sort..." << std::endl;
+            break;
+        }
+        case '4':
+        {
+            std::cout << "\nYou chose to run Merge Sort..." << std::endl;
+            break;
+        }
+        case '5':
+        {
+            std::cout << "\nYou chose to run Quick Sort..." << std::endl;
+            break;
+        }
+        case 'b':
+        {
+            std::cout << "\nLooks like you chose to enter another vector, heading back..." << std::endl;
+            userSortable.clear();
+            return true;
+        }
+        case 'x':
+        {
+            std::cout << "\nLooks like you chose to exit..." << std::endl;
+            return false;
+        }
         }
     }
     return true;
@@ -101,20 +126,21 @@ int main()
     // Todo: Center text between #'s (should be simple just figure out what the L and R buffer needs to be)
     std::cout << "\n######################################################################################" << std::endl;
     std::cout << "Welcome to my sorting algorithm practice code." << std::endl;
-    std::cout << "######################################################################################\n" << std::endl;
+    std::cout << "######################################################################################\n"
+              << std::endl;
 
     std::cout << "To get started, let's generate a vector to work with. Please choose one of the following options: " << std::endl;
-    
 
-    while(progress) {
+    while (progress)
+    {
         // Initial menu
         progress = buildMenu(userChar, userSortable);
-        if(!userSortable.empty()) {
+        if (!userSortable.empty())
+        {
             progress = sortMenu(userChar, userSortable);
         }
     }
 
-    std::cout << "Thank you, bye!\n" << std::endl;
-  
-
+    std::cout << "Thank you, bye!\n"
+              << std::endl;
 }
