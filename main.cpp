@@ -2,16 +2,18 @@
 #include <string>
 #include <vector>
 #include "utility.cpp"
+#include "sorting.cpp"
 
 bool buildMenu(char &userChar, std::vector<int> &userSortable)
 {
     userSortable.clear();
     while (userChar != 'x' && userSortable.empty())
     {
-        std::cout << "\n1. Enter a vector..." << std::endl;
-        std::cout << "2. Randomly generate a vector..." << std::endl;
-        std::cout << "3. Use a sample vector..." << std::endl;
-        std::cout << "Press \'x\' to exit the program..." << std::endl;
+        std::cout << "\n\nPlease generate a vector to work with, empty vectors are not valid." << std::endl;
+        std::cout << "   1. Enter a vector..." << std::endl;
+        std::cout << "   2. Randomly generate a vector..." << std::endl;
+        std::cout << "   3. Use a sample vector..." << std::endl;
+        std::cout << "   Press \'x\' to exit the program..." << std::endl;
 
         std::cout << "\nYour input: ";
         std::cin.clear();
@@ -61,13 +63,14 @@ bool sortMenu(char &userChar, std::vector<int> &userSortable)
 
     while (userChar != 'x')
     {
-        std::cout << "\n1. Bubble Sort..." << std::endl;
-        std::cout << "2. Insertion Sort..." << std::endl;
-        std::cout << "3. Selection Sort..." << std::endl;
-        std::cout << "4. Merge Sort..." << std::endl;
-        std::cout << "5. Quick Sort..." << std::endl;
-        std::cout << "Press \'b\' to enter another vector..." << std::endl;
-        std::cout << "Press \'x\' to exit the program..." << std::endl;
+        std::cout << "\n\nPlease pick a sortign algoritm to work with..." << std::endl;
+        std::cout << "   1. Bubble Sort..." << std::endl;
+        std::cout << "   2. Insertion Sort..." << std::endl;
+        std::cout << "   3. Selection Sort..." << std::endl;
+        std::cout << "   4. Merge Sort..." << std::endl;
+        std::cout << "   5. Quick Sort..." << std::endl;
+        std::cout << "   Press \'b\' to enter another vector..." << std::endl;
+        std::cout << "   Press \'x\' to exit the program..." << std::endl;
 
         std::cout << "\nYour input: ";
         std::cin.clear();
@@ -78,11 +81,13 @@ bool sortMenu(char &userChar, std::vector<int> &userSortable)
         case '1':
         {
             std::cout << "\nYou chose to run Bubble Sort..." << std::endl;
+            sorting::bubble(userSortable);
             break;
         }
         case '2':
         {
             std::cout << "\nYou chose to run Insertion Sort..." << std::endl;
+            sorting::insert(userSortable);
             break;
         }
         case '3':
@@ -124,12 +129,7 @@ int main()
     bool progress = true;
 
     // Todo: Center text between #'s (should be simple just figure out what the L and R buffer needs to be)
-    std::cout << "\n######################################################################################" << std::endl;
-    std::cout << "Welcome to my sorting algorithm practice code." << std::endl;
-    std::cout << "######################################################################################\n"
-              << std::endl;
-
-    std::cout << "To get started, let's generate a vector to work with. Please choose one of the following options: " << std::endl;
+    std::cout << "\nWelcome to my sorting algorithm practice code." << std::endl;
 
     while (progress)
     {
