@@ -70,7 +70,26 @@ public:
             utility::outputVector(sortable);
         }
     }
-    static void select();
+
+    static void select(std::vector<int> sortable)
+    {
+        int smallestInd;
+
+        for (int i = 0; i < sortable.size(); i++)
+        {
+            std::cout << "\nWorking on index " << i << " with a value of " << sortable[i] << std::endl;
+            smallestInd = i;
+            for (int j = i; j < sortable.size(); j++)
+            {
+                smallestInd = (sortable[smallestInd] > sortable[j]) ? j : smallestInd;
+                std::cout << "   Found the new smallest number: " << sortable[smallestInd] << std::endl;
+            }
+            std::swap(sortable[smallestInd], sortable[i]);
+            std::cout << "   Placed smallest number " << sortable[smallestInd] << std::endl;
+            std::cout << "     ";
+            utility::outputVector(sortable);
+        }
+    }
     static void merge();
     static void quick();
 };

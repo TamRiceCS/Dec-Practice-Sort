@@ -52,6 +52,7 @@ bool buildMenu(char &userChar, std::vector<int> &userSortable)
         {
             std::cout << "\nLooks like you chose to exit..." << std::endl;
             return false;
+            break;
         }
         }
     }
@@ -63,7 +64,7 @@ bool sortMenu(char &userChar, std::vector<int> &userSortable)
 
     while (userChar != 'x')
     {
-        std::cout << "\n\nPlease pick a sortign algoritm to work with..." << std::endl;
+        std::cout << "\n\nPlease pick a sortign algoritm to work with (all sort smallest -> biggest)..." << std::endl;
         std::cout << "   1. Bubble Sort..." << std::endl;
         std::cout << "   2. Insertion Sort..." << std::endl;
         std::cout << "   3. Selection Sort..." << std::endl;
@@ -93,7 +94,7 @@ bool sortMenu(char &userChar, std::vector<int> &userSortable)
         case '3':
         {
             std::cout << "\nYou chose to run Selection Sort..." << std::endl;
-            break;
+            sorting::select(userSortable);
         }
         case '4':
         {
