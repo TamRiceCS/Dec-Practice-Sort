@@ -99,6 +99,7 @@ bool sortMenu(char &userChar, std::vector<int> &userSortable)
         case '4':
         {
             std::cout << "\nYou chose to run Merge Sort..." << std::endl;
+            sorting::mergesort(userSortable, 0, userSortable.size() - 1);
             break;
         }
         case '5':

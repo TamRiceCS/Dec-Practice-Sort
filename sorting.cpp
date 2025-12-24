@@ -4,6 +4,53 @@
 class sorting
 {
 private:
+    static void merge(std::vector<int> &sortable, int start, int mid, int end)
+    {
+        std::vector<int> left;
+        std::vector<int> right;
+
+        int lptr = 0;
+        int rptr = 0;
+
+        for (int i = start; i <= mid; i++)
+        {
+            left.push_back(sortable[i]);
+        }
+
+        for (int i = mid + 1; i <= end; i++)
+        {
+            right.push_back(sortable[i]);
+        }
+
+        std::cout << "\nSorting the range [" << start << "," << end << "]" << std::endl;
+
+        while (lptr < left.size() || rptr < right.size())
+        {
+            if (rptr >= right.size())
+            {
+                sortable[start] = left[lptr];
+                std::cout << "   Placed " << left[lptr++] << " at index " << start++ << std::endl;
+            }
+            else if (lptr >= left.size())
+            {
+                sortable[start] = right[rptr];
+                std::cout << "   Placed " << right[rptr++] << " at index " << start++ << std::endl;
+            }
+            else if (left[lptr] < right[rptr])
+            {
+                sortable[start] = left[lptr];
+                std::cout << "   Placed " << left[lptr++] << " at index " << start++ << std::endl;
+            }
+            else
+            {
+                sortable[start] = right[rptr];
+                std::cout << "   Placed " << right[rptr++] << " at index " << start++ << std::endl;
+            }
+        }
+
+        utility::outputVector(sortable);
+    }
+
 public:
     // swap neighbors when necessary
     static void bubble(std::vector<int> sortable)
@@ -90,6 +137,16 @@ public:
             utility::outputVector(sortable);
         }
     }
-    static void merge();
+    static void mergesort(std::vector<int> &sortable, int start, int end)
+    {
+        if (start == end)
+        {
+            return;
+        }
+        int mid = (start + end) / 2;
+        mergesort(sortable, start, mid);
+        mergesort(sortable, mid + 1, end);
+        merge(sortable, start, mid, end);
+    }
     static void quick();
 };
