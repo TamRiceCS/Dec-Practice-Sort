@@ -51,6 +51,37 @@ private:
         utility::outputVector(sortable);
     }
 
+    static int partition(std::vector<int> &sortable, int start, int end)
+    {
+        int pivot = sortable[end];
+        int place = start - 1;
+        int curr = start;
+
+        std::cout << "\nCurrently working on [" << start << "," << end << "]" << std::endl;
+
+        for (curr = start; curr < end; curr++)
+        {
+            if (sortable[curr] < pivot)
+            {
+                place++;
+                std::swap(sortable[place], sortable[curr]);
+                std::cout << "   Placing " << sortable[place] << " at " << place << " because it is less than " << pivot << std::endl;
+                std::cout << "   ";
+                utility::outputVector(sortable);
+            }
+            else
+            {
+                std::cout << "   " << sortable[curr] << " is greater than " << pivot << " keep out of the lesser indexes." << std::endl;
+            }
+        }
+
+        std::swap(sortable[place + 1], sortable[end]);
+        std::cout << "   Placing " << sortable[end] << " at " << place + 1 << " because we finished the partition " << pivot << std::endl;
+        std::cout << "   ";
+        utility::outputVector(sortable);
+        return place + 1;
+    }
+
 public:
     // swap neighbors when necessary
     static void bubble(std::vector<int> sortable)
@@ -148,5 +179,16 @@ public:
         mergesort(sortable, mid + 1, end);
         merge(sortable, start, mid, end);
     }
-    static void quick();
+
+    static void quick(std::vector<int> &sortable, int start, int end)
+    {
+        if (start >= end)
+        {
+            return;
+        }
+
+        int mid = partition(sortable, start, end);
+        quick(sortable, start, mid - 1);
+        quick(sortable, mid + 1, end);
+    }
 };

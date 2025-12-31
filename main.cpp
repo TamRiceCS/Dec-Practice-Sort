@@ -105,6 +105,7 @@ bool sortMenu(char &userChar, std::vector<int> &userSortable)
         case '5':
         {
             std::cout << "\nYou chose to run Quick Sort..." << std::endl;
+            sorting::quick(userSortable, 0, userSortable.size() - 1);
             break;
         }
         case 'b':
